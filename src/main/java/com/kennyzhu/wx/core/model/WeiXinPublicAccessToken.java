@@ -1,11 +1,11 @@
 package com.kennyzhu.wx.core.model;
 
-import com.txjy.letsmoney.core.exception.BusinessException;
-import com.txjy.letsmoney.core.service.HttpService;
-import com.txjy.letsmoney.core.util.JsonUtil;
-import com.txjy.letsmoney.core.util.SpringContextHolder;
-import com.txjy.letsmoney.core.weixin.WeiXinPublicConstant;
-import org.apache.commons.lang.StringUtils;
+import com.kennyzhu.wx.core.exception.BusinessException;
+import com.kennyzhu.wx.core.service.HttpService;
+import com.kennyzhu.wx.core.service.WeiXinPublicConstant;
+import com.kennyzhu.wx.core.util.JsonUtil;
+import com.kennyzhu.wx.core.util.SpringContextHolder;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
