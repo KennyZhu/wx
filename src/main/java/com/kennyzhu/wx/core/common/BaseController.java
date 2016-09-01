@@ -101,26 +101,6 @@ public class BaseController {
         return JsonUtil.getJsonString(new BaseResult(resultCodeEnum));
     }
 
-    /**
-     * 空结果
-     *
-     * @param page
-     * @param pageSize
-     * @return
-     */
-    protected String buildEmptyPageJson(Integer page, Integer pageSize) {
-        PageBean result = new PageBean();
-        if (pageSize != null) {
-            result.setPageSize(pageSize);
-        }
-        if (page != null) {
-            result.setPageNum(page);
-        }
-        BaseResult
-                baeResult = new BaseResult(ResultCodeEnum.SUCCESS);
-        baeResult.setResultData(result);
-        return JsonUtil.getJsonString(baeResult);
-    }
 
     protected boolean checkPageParam(int page, int pageSize) {
         if (page <= 0 || pageSize <= 0) {
