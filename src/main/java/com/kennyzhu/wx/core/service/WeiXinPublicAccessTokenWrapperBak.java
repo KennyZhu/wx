@@ -14,16 +14,16 @@ import java.io.Serializable;
  * <br/>Time: 17:01
  * <br/>User: ylzhu
  */
-public class WeiXinPublicAccessTokenWrapper implements Serializable {
+public class WeiXinPublicAccessTokenWrapperBak implements Serializable {
     private WeiXinPublicAccessToken publicAccessToken;
 
-    private static final WeiXinPublicAccessTokenWrapper INSTANCE = new WeiXinPublicAccessTokenWrapper();
-    private static final Logger LOGGER = LoggerFactory.getLogger(WeiXinPublicAccessTokenWrapper.class);
+    private static final WeiXinPublicAccessTokenWrapperBak INSTANCE = new WeiXinPublicAccessTokenWrapperBak();
+    private static final Logger LOGGER = LoggerFactory.getLogger(WeiXinPublicAccessTokenWrapperBak.class);
 
-    private WeiXinPublicAccessTokenWrapper() {
+    private WeiXinPublicAccessTokenWrapperBak() {
     }
 
-    public static WeiXinPublicAccessTokenWrapper getInstance() {
+    public static WeiXinPublicAccessTokenWrapperBak getInstance() {
         return INSTANCE;
     }
 
@@ -32,7 +32,7 @@ public class WeiXinPublicAccessTokenWrapper implements Serializable {
      *
      * @return
      */
-    public WeiXinPublicAccessTokenWrapper buildWeiXinPublicAccessToken() {
+    public WeiXinPublicAccessTokenWrapperBak buildWeiXinPublicAccessToken() {
         try {
             LOGGER.info("#WeiXin Build New WeiXinPublicAccessToken!");
             publicAccessToken = buildAccessToken();

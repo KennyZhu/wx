@@ -1,6 +1,6 @@
 package com.kennyzhu.wx.core.service;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * User: KennyZhu
@@ -21,9 +21,7 @@ public final class WeiXinPublicConstant {
     public static final String USER_ACCESS_TOKEN_URL = "https://api.weixin.qq.com/sns/oauth2/access_token?";
     public static final String USER_INFO_URL = "https://api.weixin.qq.com/cgi-bin/user/info?";
 
-
     public static final String GET_CODE_URL = "https://open.weixin.qq.com/connect/oauth2/authorize?";
-
 
     public static final String CREATE_MENU_URL = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=";
 

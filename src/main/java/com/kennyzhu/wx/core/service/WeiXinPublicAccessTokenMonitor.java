@@ -1,6 +1,6 @@
 package com.kennyzhu.wx.core.service;
 
-import com.txjy.letsmoney.core.weixin.model.WeiXinPublicAccessToken;
+import com.kennyzhu.wx.core.model.WeiXinPublicAccessToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +14,7 @@ import java.util.Date;
  * <br/>User: ylzhu
  */
 public class WeiXinPublicAccessTokenMonitor {
-    private static final Logger LOGGER = LoggerFactory.getLogger(WeiXinPublicAccessTokenWrapper.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(WeiXinPublicAccessTokenWrapperBak.class);
 
     /**
      * 验证Token有效性

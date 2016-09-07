@@ -1,6 +1,7 @@
 package com.kennyzhu.wx.core.service;
 
 
+import com.kennyzhu.wx.core.exception.BusinessException;
 import com.kennyzhu.wx.core.model.WeiXinPublicAccessToken;
 import com.kennyzhu.wx.core.util.JsonUtil;
 import com.kennyzhu.wx.core.util.SpringContextHolder;
@@ -8,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Serializable;
 import java.util.Map;
 
 
@@ -54,7 +56,8 @@ public final class WeiXinPublicAccessTokenFactory {
      */
     public WeiXinPublicAccessToken getAccessTokenFromWeiXin() {
         try {
-            WeiXinPublicAccessToken accessToken = WeiXinPublicAccessTokenWrapper.getInstance()
+            WeiXinPublicAccessTokenWrapper weiXinPublicAccessTokenWrapper = new WeiXinPublicAccessTokenWrapper();
+            WeiXinPublicAccessToken accessToken = weiXinPublicAccessTokenWrapper
                     .buildWeiXinPublicAccessToken().getPublicAccessToken();
 
             WeiXinPublicAccessTokenCache.getInstance().set(WeiXinPublicConstant.APP_ID, accessToken);
@@ -97,4 +100,63 @@ public final class WeiXinPublicAccessTokenFactory {
         }
         return false;
     }
+
+    private class WeiXinPublicAccessTokenWrapper implements Serializable {
+        private WeiXinPublicAccessToken publicAccessToken = new WeiXinPublicAccessToken();
+
+        /**
+         * 获取AccessToken
+         *
+         * @return
+         */
+        public WeiXinPublicAccessTokenWrapper buildWeiXinPublicAccessToken() {
+            try {
+                buildAccessToken();
+            } catch (BusinessException buException) {
+
+            } catch (Exception e) {
+                throw e;
+            }
+            return this;
+        }
+
+        /**
+         * 获取AccessToken
+         *
+         * @return
+         */
+        public void buildAccessToken() throws BusinessException {
+            LOG.info("Build WeiXin access token begin.");
+            String accessTokenUrl = WeiXinPublicConstant.getPublicAccessTokenUrl();
+            HttpService httpService = SpringContextHolder.getBean("httpServiceImpl");
+            try {
+                String accessTokenResult = httpService.sendGetRequest(accessTokenUrl);
+                LOG.info("Build WeiXin access token return : " + accessTokenResult);
+                if (StringUtils.isNotBlank(accessTokenResult)) {
+                    Map<String, Object> accessTokenMap = JsonUtil.jsonToMap(accessTokenResult);
+                    if (accessTokenMap != null) {
+                        Integer errorCode = (Integer) accessTokenMap.get("errcode");
+                        if (errorCode != null) {
+                            LOG.error("Build WeiXin access token error!WeiXin return : " + accessTokenResult);
+                            throw new BusinessException("Build WeiXin access token error!WeiXin return : " + accessTokenResult);
+                        } else {
+                            this.publicAccessToken.setAccess_token((String) accessTokenMap.get("access_token"));
+                            this.publicAccessToken.setExpires_in((Integer) accessTokenMap.get("expires_in"));
+                        }
+                    } else {
+                        LOG.error("#Parse accessToken result:" + accessTokenResult + " return null.");
+                    }
+                }
+            } catch (Exception e) {
+                LOG.error("Build WeiXin access token error!Cause:{}", e);
+                throw e;
+            }
+        }
+
+
+        public WeiXinPublicAccessToken getPublicAccessToken() {
+            return publicAccessToken;
+        }
+    }
+
 }
