@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -56,7 +57,7 @@ public final class JsonUtil {
         } catch (Exception e) {
             LOGGER.error("Parse json string error.json is " + json + "+Cause:", e);
         }
-        return null;
+        return new HashMap();
     }
 
 }

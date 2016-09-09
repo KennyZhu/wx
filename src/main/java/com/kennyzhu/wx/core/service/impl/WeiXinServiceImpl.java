@@ -58,6 +58,7 @@ public class WeiXinServiceImpl implements WeiXinService {
             WeiXinPublicAccessToken token = WeiXinPublicAccessTokenFactory.getInstance().getWeiXinPublicAccessToken();
             if (token == null) {
                 LOGGER.error("#Get accessToken return null.");
+                return null;
             }
             String result = httpService.sendGetRequest(WeiXinPublicConstant.getUserInfoUrl(token.getAccess_token(), openId));
             LOGGER.info("#Get accessToken return " + result);

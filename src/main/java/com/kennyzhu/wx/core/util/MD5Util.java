@@ -84,11 +84,7 @@ public class MD5Util {
     public static boolean validate(String password, String inputString,
                                    String codeType) {
         System.out.println("sign:" + password + "，根据源串：" + inputString + "，生成的签名串:" + digest(inputString, codeType));
-        if (password.equalsIgnoreCase(digest(inputString, codeType))) {
-            return true;
-        } else {
-            return false;
-        }
+        return password.equalsIgnoreCase(digest(inputString, codeType));
     }
 
     /**

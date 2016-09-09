@@ -89,10 +89,7 @@ public final class WeiXinUtil {
             return false;
         }
         String sign = genSignatureForVerify(token, timestamp, nonce);
-        if (signature.equals(sign)) {
-            return true;
-        }
-        return false;
+        return signature.equals(sign);
     }
 
     public static WeiXinPublicMsg parseMsg(String xml) {

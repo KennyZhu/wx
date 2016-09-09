@@ -18,10 +18,7 @@ public final class DataUtil {
     }
 
     public static boolean checkPageParam(int page, int pageSize) {
-        if (page <= 0 || pageSize <= 0) {
-            return false;
-        }
-        return true;
+        return !(page <= 0 || pageSize <= 0);
     }
 
     /**

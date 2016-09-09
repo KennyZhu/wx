@@ -83,15 +83,7 @@ public class BaseController {
     protected String buildFailJson() {
         return buildFailJson(ResultCodeEnum.FAIL.getDesc());
     }
-
-    /**
-     * 未登录
-     *
-     * @return
-     */
-    protected String buildNoLogin() {
-        return JsonUtil.getJsonString(new BaseResult(ResultCodeEnum.NOT_LOGIN));
-    }
+    
 
     /**
      * @param resultCodeEnum
@@ -103,9 +95,6 @@ public class BaseController {
 
 
     protected boolean checkPageParam(int page, int pageSize) {
-        if (page <= 0 || pageSize <= 0) {
-            return false;
-        }
-        return true;
+        return !(page <= 0 || pageSize <= 0);
     }
 }

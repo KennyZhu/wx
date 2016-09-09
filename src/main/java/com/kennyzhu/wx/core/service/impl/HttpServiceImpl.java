@@ -113,8 +113,8 @@ public class HttpServiceImpl implements HttpService {
             } catch (IOException e) {
                 LOGGER.error("#Close connection error.Cause:", e);
             }
-            return responseContent;
         }
+        return responseContent;
     }
 
 

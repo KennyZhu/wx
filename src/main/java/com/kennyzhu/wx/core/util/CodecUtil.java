@@ -138,8 +138,7 @@ public final class CodecUtil {
 
         StringBuffer sb = new StringBuffer();
 
-        BigInteger bi = new BigInteger(hexStr, 16);
-        BigInteger d = bi;
+        BigInteger d = new BigInteger(hexStr, 16);
         BigInteger m = BigInteger.ZERO;
 
         while (!BigInteger.ZERO.equals(d)) {

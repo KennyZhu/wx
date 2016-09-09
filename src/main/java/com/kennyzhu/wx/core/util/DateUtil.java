@@ -19,7 +19,7 @@ public final class DateUtil {
         return getDay(new Date(), specify);
     }
 
-    public static final String getDayStr(int specify) {
+    public static String getDayStr(int specify) {
         Date day = getDay(specify);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return simpleDateFormat.format(day);
