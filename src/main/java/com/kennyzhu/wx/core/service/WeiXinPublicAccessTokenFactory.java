@@ -109,11 +109,9 @@ public final class WeiXinPublicAccessTokenFactory {
          *
          * @return
          */
-        public WeiXinPublicAccessTokenWrapper buildWeiXinPublicAccessToken() {
+        public WeiXinPublicAccessTokenWrapper buildWeiXinPublicAccessToken() throws Exception {
             try {
                 buildAccessToken();
-            } catch (BusinessException buException) {
-
             } catch (Exception e) {
                 throw e;
             }
@@ -125,7 +123,7 @@ public final class WeiXinPublicAccessTokenFactory {
          *
          * @return
          */
-        public void buildAccessToken() throws BusinessException {
+        public void buildAccessToken() throws Exception {
             LOG.info("Build WeiXin access token begin.");
             String accessTokenUrl = WeiXinPublicConstant.getPublicAccessTokenUrl();
             HttpService httpService = SpringContextHolder.getBean("httpServiceImpl");
