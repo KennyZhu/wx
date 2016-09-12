@@ -3,7 +3,7 @@ package com.kennyzhu.wx.core.enums;
 import java.util.stream.Stream;
 
 /**
- * Desc:易信消息事件
+ * Desc:微信消息事件
  * <p/>Date: 2014/11/26
  * <br/>Time: 16:02
  * <br/>User: ylzhu
