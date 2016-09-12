@@ -76,14 +76,7 @@ public final class CodecUtil {
             return result;
 
         //str是否是十六进制字符串
-
-        //try {
         return Hex.decodeHex(str.toCharArray());
-        //} catch (DecoderException e) {
-        //	LogUtil.error("字符串\""+str+"\"hex解码异常！",e);
-        //	throw new IllegalArgumentException("字符串\""+str+"\"hex解码异常！",e);
-        //}
-        //return result;
 
     }
 

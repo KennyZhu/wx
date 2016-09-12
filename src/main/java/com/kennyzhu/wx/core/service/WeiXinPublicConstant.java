@@ -12,10 +12,6 @@ public final class WeiXinPublicConstant {
     public static final String APP_SECRET = "d05e0be6537a7e12ec463267ae842bab";
     public static final String VERIFY_TOKEN = "c0c63192d9887335a250927db83eb2b3";
 
-//    public static final String APP_ID = "wx2811ef8f37a5952b";
-//    public static final String APP_SECRET = "f68b74f183749a31d1db90a140157919";
-//    public static final String VERIFY_TOKEN = "183031c986e7a5fed019e576a652e227";
-
     public static final String PUBLIC_ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?&";
 
     public static final String USER_ACCESS_TOKEN_URL = "https://api.weixin.qq.com/sns/oauth2/access_token?";
