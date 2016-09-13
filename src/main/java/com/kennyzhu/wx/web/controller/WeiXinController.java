@@ -2,10 +2,13 @@ package com.kennyzhu.wx.web.controller;
 
 import com.kennyzhu.wx.core.common.BaseController;
 import com.kennyzhu.wx.core.model.AccessToken;
+import com.kennyzhu.wx.core.model.WeiXinPublicEventMsg;
+import com.kennyzhu.wx.core.model.WeiXinPublicMsg;
 import com.kennyzhu.wx.core.service.HttpService;
 import com.kennyzhu.wx.core.service.WeiXinPublicConstant;
 import com.kennyzhu.wx.core.service.WeiXinPublicSubEventHandler;
 import com.kennyzhu.wx.core.service.WeiXinService;
+import com.kennyzhu.wx.core.util.DataUtil;
 import com.kennyzhu.wx.core.util.WeiXinUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -16,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by ylzhu on 2016/7/7.
@@ -49,7 +52,7 @@ public class WeiXinController extends BaseController {
             if (StringUtils.isNotBlank(echostr)) {
                 serverVerify(response, echostr, timestamp, nonce, signature);
             } else {
-//                msgHandler(request, response);
+                msgHandler(request);
             }
         } catch (Exception e) {
             LOGGER.error("Validate Token Error!", e);
@@ -57,16 +60,16 @@ public class WeiXinController extends BaseController {
     }
 
     /*
-    记录用户关注微信公众号时，用户openid
+     * 微信消息处理
      */
-//    private void msgHandler(HttpServletRequest request) throws Exception {
-//        String xml = getXmlFromRequest(request);
-//        WeiXinPublicMsg weiXinPublicMsg = WeiXinUtil.parseMsg(xml);
-//        if (weiXinPublicMsg instanceof WeiXinPublicEventMsg) {
-//            Map<String, Object> paramMap = new HashMap<>();
-//            weiXinPublicSubEventHandler.handle(weiXinPublicMsg, paramMap);
-//        }
-//    }
+    private void msgHandler(HttpServletRequest request) throws Exception {
+        String xml = DataUtil.getStringFromRequest(request);
+        WeiXinPublicMsg weiXinPublicMsg = WeiXinUtil.parseMsg(xml);
+        if (weiXinPublicMsg instanceof WeiXinPublicEventMsg) {
+            Map<String, Object> paramMap = new HashMap<>();
+            weiXinPublicSubEventHandler.handle(weiXinPublicMsg, paramMap);
+        }
+    }
 
 //
 
@@ -103,23 +106,6 @@ public class WeiXinController extends BaseController {
         }
     }
 
-    /**
-     * 获取消息报文数据
-     *
-     * @param request
-     * @return
-     * @throws Exception
-     */
-    private String getXmlFromRequest(HttpServletRequest request) throws Exception {
-        BufferedReader br = null;
-        String line = null;
-        StringBuilder sb = new StringBuilder();
-        br = new BufferedReader(new InputStreamReader(request.getInputStream()));
-        while ((line = br.readLine()) != null) {
-            sb.append(line);
-        }
-        return sb.toString();
-    }
 
     /**
      * 获取用户OpenId
@@ -152,8 +138,8 @@ public class WeiXinController extends BaseController {
     public String getCode(String redirectUrl, HttpServletResponse response) {
         try {
             LOGGER.info("#RedirectUrl is " + redirectUrl);
-            redirectUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2811ef8f37a5952b&redirect_uri=" + redirectUrl + "&response_type=code&scope=snsapi_base#wechat_redirect";
-            response.sendRedirect(redirectUrl);
+            String codeURL = WeiXinPublicConstant.getCodeUrl(redirectUrl, null);
+            response.sendRedirect(codeURL);
             LOGGER.info("#After send Redirect.");
         } catch (Exception e) {
             LOGGER.error("#Get code error.Cause:", e);

@@ -29,7 +29,12 @@ public final class WeiXinPublicConstant {
      * @return
      */
     public static String getCodeUrl(String redirectUri, String param) {
-        return GET_CODE_URL + "appid=" + APP_ID + "&redirect_uri=" + redirectUri + "&response_type=code&scope=snsapi_userinfo&state=" + param + "#wechat_redirect";
+        String result = GET_CODE_URL + "appid=" + APP_ID + "&redirect_uri=" + redirectUri + "&response_type=code&scope=snsapi_userinfo";
+        if (StringUtils.isNotBlank(param)) {
+            result = result + "&state=" + param;
+        }
+        result = result + "#wechat_redirect";
+        return result;
     }
 
     /**

@@ -29,6 +29,10 @@ public interface WeiXinService {
     public boolean createWeiXinPublicMenu(String accessToken);
 
 
+    /**
+     * @param accessToken
+     * @return
+     */
     public boolean deleteWeiXinPublicMenu(String accessToken);
 
     /**

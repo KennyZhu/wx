@@ -3,6 +3,9 @@ package com.kennyzhu.wx.core.util;
 
 import org.apache.commons.lang3.StringUtils;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.URLDecoder;
 import java.util.Collections;
 import java.util.HashMap;
@@ -46,5 +49,22 @@ public final class DataUtil {
             return Collections.emptyMap();
         }
 
+    }
+
+    /**
+     * 获取消息报文数据
+     *
+     * @param request
+     * @return
+     * @throws Exception
+     */
+    public static String getStringFromRequest(HttpServletRequest request) throws Exception {
+        String line = null;
+        StringBuilder sb = new StringBuilder();
+        BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
+        while ((line = br.readLine()) != null) {
+            sb.append(line);
+        }
+        return sb.toString();
     }
 }
