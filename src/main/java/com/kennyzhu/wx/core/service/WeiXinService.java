@@ -2,6 +2,7 @@ package com.kennyzhu.wx.core.service;
 
 import com.kennyzhu.wx.core.model.AccessToken;
 import com.kennyzhu.wx.core.model.WeiXinPublicAccessToken;
+import com.kennyzhu.wx.core.model.WeiXinUserInfo;
 
 /**
  * Created by ylzhu on 2016/7/7.

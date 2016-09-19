@@ -4,6 +4,7 @@ import com.kennyzhu.wx.core.enums.WeiXinPublicMenuTypeEnum;
 import com.kennyzhu.wx.core.model.AccessToken;
 import com.kennyzhu.wx.core.model.WeiXinPublicAccessToken;
 import com.kennyzhu.wx.core.model.WeiXinPublicMenu;
+import com.kennyzhu.wx.core.model.WeiXinUserInfo;
 import com.kennyzhu.wx.core.service.*;
 import com.kennyzhu.wx.core.util.JsonUtil;
 import com.kennyzhu.wx.core.util.WeiXinPublicUtil;

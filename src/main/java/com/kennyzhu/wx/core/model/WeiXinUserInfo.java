@@ -1,4 +1,4 @@
-package com.kennyzhu.wx.core.service;
+package com.kennyzhu.wx.core.model;
 
 /**
  * Created by ylzhu on 2016/7/11.
