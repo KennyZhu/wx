@@ -36,10 +36,10 @@ public final class DataUtil {
         }
         Map<String, String> result = new HashMap<>();
         try {
-            String[] params = paramStr.split("\\&");
+            String[] params = paramStr.split("&");
             //验证参数是否符合规定的字符串
             for (String str : params) {
-                String[] _pairs = str.split("\\=");
+                String[] _pairs = str.split("=");
                 if (_pairs.length == 2) {
                     result.put(_pairs[0], URLDecoder.decode(_pairs[1], "UTF-8"));
                 }

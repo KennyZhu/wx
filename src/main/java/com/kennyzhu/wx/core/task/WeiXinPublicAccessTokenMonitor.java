@@ -1,6 +1,8 @@
-package com.kennyzhu.wx.core.service;
+package com.kennyzhu.wx.core.task;
 
 import com.kennyzhu.wx.core.model.WeiXinPublicAccessToken;
+import com.kennyzhu.wx.core.service.WeiXinPublicAccessTokenFactory;
+import com.kennyzhu.wx.core.service.WeiXinPublicAccessTokenWrapperBak;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

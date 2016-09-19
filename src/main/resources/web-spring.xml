@@ -74,18 +74,6 @@
         <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
 
-    <!-- 定时任务 -->
-    <bean id="rankInfoWeekStatCountTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-        <property name="jobDetail" ref="rankInfoWeekStatJobDetail"/>
-        <!--<property name="cronExpression" value="0 0 18 ? * FRI"/>-->
-        <property name="cronExpression" value="0 0/5 * * * ?"/>
-    </bean>
-    <bean id="rankInfoWeekStatJob" class="com.txjy.letsmoney.core.task.RankInfoTask"/>
-    <bean id="rankInfoWeekStatJobDetail"
-          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-        <property name="targetObject" ref="rankInfoWeekStatJob"/>
-        <property name="targetMethod" value="weekStat"/>
-    </bean>
 
     <bean id="monitorWeiXinPubAccessTokenTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
         <property name="jobDetail" ref="monitorWeiXinPubAccessTokenJobDetail"/>
@@ -93,7 +81,7 @@
             <value>0 0/2 * * * ?</value>
         </property>
     </bean>
-    <bean id="monitorWeiXinPubAccessTokenJob" class="com.txjy.letsmoney.core.weixin.WeiXinPublicAccessTokenMonitor"/>
+    <bean id="monitorWeiXinPubAccessTokenJob" class="com.kennyzhu.wx.core.task.WeiXinPublicAccessTokenMonitor"/>
     <bean id="monitorWeiXinPubAccessTokenJobDetail"
           class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="monitorWeiXinPubAccessTokenJob"/>
@@ -103,34 +91,33 @@
         <property name="autoStartup" value="true"/>
         <property name="triggers">
             <list>
-                <ref bean="rankInfoWeekStatCountTrigger"/>
                 <ref bean="monitorWeiXinPubAccessTokenTrigger"/>
             </list>
         </property>
     </bean>
 
-    <mvc:resources mapping="/js/**" location="/js/"/>
-    <mvc:resources mapping="/css/**" location="/css/"/>
-    <mvc:resources mapping="/images/**" location="/images/"/>
-    <mvc:resources mapping="/html/**" location="/html/"/>
-    <bean id="weixinInterceptor" class="com.txjy.letsmoney.web.interceptor.WeiXinInterceptor"/>
-    <bean id="loginInterceptor" class="com.txjy.letsmoney.web.interceptor.LoginInterceptor"/>
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/loan/edit.html"/>
-            <mvc:mapping path="/loan/queryBase.html"/>
-            <!--<mvc:mapping path="/loan/queryDetail.html"/>-->
-            <!--<mvc:mapping path="/loan/add.html"/>-->
-            <ref bean="weixinInterceptor"/>
-        </mvc:interceptor>
-        <mvc:interceptor>
-            <mvc:mapping path="/sys/loan/sysLoanInfoList"/>
-            <mvc:mapping path="/sys/loan/getPageList"/>
-            <mvc:mapping path="/sys/loan/edit"/>
-            <mvc:mapping path="/sys/loan/update"/>
-            <ref bean="loginInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+    <!--<mvc:resources mapping="/js/**" location="/js/"/>-->
+    <!--<mvc:resources mapping="/css/**" location="/css/"/>-->
+    <!--<mvc:resources mapping="/images/**" location="/images/"/>-->
+    <!--<mvc:resources mapping="/html/**" location="/html/"/>-->
+    <!--<bean id="weixinInterceptor" class="com.txjy.letsmoney.web.interceptor.WeiXinInterceptor"/>-->
+    <!--<bean id="loginInterceptor" class="com.txjy.letsmoney.web.interceptor.LoginInterceptor"/>-->
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/loan/edit.html"/>-->
+            <!--<mvc:mapping path="/loan/queryBase.html"/>-->
+            <!--&lt;!&ndash;<mvc:mapping path="/loan/queryDetail.html"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<mvc:mapping path="/loan/add.html"/>&ndash;&gt;-->
+            <!--<ref bean="weixinInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/sys/loan/sysLoanInfoList"/>-->
+            <!--<mvc:mapping path="/sys/loan/getPageList"/>-->
+            <!--<mvc:mapping path="/sys/loan/edit"/>-->
+            <!--<mvc:mapping path="/sys/loan/update"/>-->
+            <!--<ref bean="loginInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
 
 </beans>
