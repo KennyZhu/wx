@@ -7,23 +7,24 @@
 
     <!--&lt;!&ndash; ftl页面配置 &ndash;&gt;-->
     <!--<bean id="freemarkerConfig"-->
-          <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
-        <!--<property name="templateLoaderPath" value="/WEB-INF/ftl">-->
-        <!--</property>-->
-        <!--<property name="defaultEncoding" value="UTF-8"></property>-->
-        <!--<property name="freemarkerSettings">-->
-            <!--<props>-->
-                <!--<prop key="template_update_delay">10</prop>-->
-                <!--<prop key="locale">zh_CN</prop>-->
-                <!--<prop key="object_wrapper">freemarker.ext.beans.BeansWrapper</prop>-->
-            <!--</props>-->
-        <!--</property>-->
+    <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">-->
+    <!--<property name="templateLoaderPath" value="/WEB-INF/ftl">-->
+    <!--</property>-->
+    <!--<property name="defaultEncoding" value="UTF-8"></property>-->
+    <!--<property name="freemarkerSettings">-->
+    <!--<props>-->
+    <!--<prop key="template_update_delay">10</prop>-->
+    <!--<prop key="locale">zh_CN</prop>-->
+    <!--<prop key="object_wrapper">freemarker.ext.beans.BeansWrapper</prop>-->
+    <!--</props>-->
+    <!--</property>-->
     <!--</bean>-->
     <!--<bean id="viewResolver"-->
-          <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">-->
-        <!--<property name="contentType" value="text/html;charset=UTF-8"></property>-->
-        <!--<property name="suffix" value=".ftl"/>-->
+    <!--class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">-->
+    <!--<property name="contentType" value="text/html;charset=UTF-8"></property>-->
+    <!--<property name="suffix" value=".ftl"/>-->
     <!--</bean>-->
+    <bean class="com.kennyzhu.wx.core.common.ConfigProxy" init-method="reload"/>
     <context:component-scan base-package="com.kennyzhu.wx"/>
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
@@ -70,9 +71,9 @@
         </property>
     </bean>
 
-    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactory"/>
-    </bean>
+    <!--<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">-->
+    <!--<constructor-arg index="0" ref="sqlSessionFactory"/>-->
+    <!--</bean>-->
 
 
     <bean id="monitorWeiXinPubAccessTokenTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
@@ -103,20 +104,20 @@
     <!--<bean id="weixinInterceptor" class="com.txjy.letsmoney.web.interceptor.WeiXinInterceptor"/>-->
     <!--<bean id="loginInterceptor" class="com.txjy.letsmoney.web.interceptor.LoginInterceptor"/>-->
     <!--<mvc:interceptors>-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/loan/edit.html"/>-->
-            <!--<mvc:mapping path="/loan/queryBase.html"/>-->
-            <!--&lt;!&ndash;<mvc:mapping path="/loan/queryDetail.html"/>&ndash;&gt;-->
-            <!--&lt;!&ndash;<mvc:mapping path="/loan/add.html"/>&ndash;&gt;-->
-            <!--<ref bean="weixinInterceptor"/>-->
-        <!--</mvc:interceptor>-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/sys/loan/sysLoanInfoList"/>-->
-            <!--<mvc:mapping path="/sys/loan/getPageList"/>-->
-            <!--<mvc:mapping path="/sys/loan/edit"/>-->
-            <!--<mvc:mapping path="/sys/loan/update"/>-->
-            <!--<ref bean="loginInterceptor"/>-->
-        <!--</mvc:interceptor>-->
+    <!--<mvc:interceptor>-->
+    <!--<mvc:mapping path="/loan/edit.html"/>-->
+    <!--<mvc:mapping path="/loan/queryBase.html"/>-->
+    <!--&lt;!&ndash;<mvc:mapping path="/loan/queryDetail.html"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<mvc:mapping path="/loan/add.html"/>&ndash;&gt;-->
+    <!--<ref bean="weixinInterceptor"/>-->
+    <!--</mvc:interceptor>-->
+    <!--<mvc:interceptor>-->
+    <!--<mvc:mapping path="/sys/loan/sysLoanInfoList"/>-->
+    <!--<mvc:mapping path="/sys/loan/getPageList"/>-->
+    <!--<mvc:mapping path="/sys/loan/edit"/>-->
+    <!--<mvc:mapping path="/sys/loan/update"/>-->
+    <!--<ref bean="loginInterceptor"/>-->
+    <!--</mvc:interceptor>-->
     <!--</mvc:interceptors>-->
 
 
