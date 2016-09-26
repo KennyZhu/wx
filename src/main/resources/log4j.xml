@@ -21,11 +21,6 @@
         </layout>
     </appender>
 
-    <logger name="org.springframework.web" additivity="false">
-        <level value="WARN"/>
-        <appender-ref ref="springAppender"/>
-    </logger>
-
     <root>
         <level value="INFO"/>
         <appender-ref ref="rootAppender"/>

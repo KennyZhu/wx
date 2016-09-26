@@ -24,7 +24,7 @@
     <!--<property name="contentType" value="text/html;charset=UTF-8"></property>-->
     <!--<property name="suffix" value=".ftl"/>-->
     <!--</bean>-->
-    <bean class="com.kennyzhu.wx.core.common.ConfigProxy" init-method="reload"/>
+
     <context:component-scan base-package="com.kennyzhu.wx"/>
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
